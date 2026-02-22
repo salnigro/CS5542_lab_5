@@ -6,7 +6,7 @@
 ### Member 1: Sal Nigro
 - Responsibilities:
   - Wrote Queries 
-  - 
+  - made demo
 - Evidence (PR/commits):
   - https://github.com/salnigro/CS5542_lab_5/commit/4f2708ac95f2bb7072c7bf428eff00b869e4428c
 - Tested:
