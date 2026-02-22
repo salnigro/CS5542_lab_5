@@ -1,0 +1,63 @@
+timestamp,team,user,query_name,latency_ms,rows_returned,error
+2026-02-17T06:38:13.376708,TeamX,Tester,Q1: Team x Category stats,37700,0,
+2026-02-17T06:43:48.844226,TeamX,StudentName,SELECT * FROM EVENTS,17108,10,
+2026-02-17T06:46:03.021064,TeamX,StudentName,Q1: Team × Category stats,268,5,
+2026-02-17T06:46:14.157806,TeamX,StudentName,Q1: Team × Category stats,152,5,
+2026-02-17T06:46:23.122325,TeamX,StudentName,Q2: Category last 24h,265,0,
+2026-02-17T06:46:30.405849,TeamX,StudentName,Q3: Join users × events,1310,7,
+2026-02-17T06:48:28.288450,TeamX,StudentName,UPDATE USERS,0,0,
+2026-02-17T06:50:15.900484,TeamX,StudentName,UPDATE USERS,0,4,
+2026-02-17T06:50:38.555831,TeamX,StudentName,UPDATE USERS,0,4,
+2026-02-17T06:51:06.526990,TeamX,StudentName,UPDATE USERS,0,2,
+2026-02-17T06:53:30.832922,TeamX,StudentName,Q3: Join users × events,365,7,
+2026-02-17T06:53:41.749972,TeamX,StudentName,SELECT * FROM EVENTS,250,10,
+2026-02-22T04:49:26.832780,TeamX,Sal Nigro,Q1: Team × Category stats,148788,5,
+2026-02-22T04:55:11.563145,TeamX,StudentName,SELECT * FROM EVENTS,69111,5,
+2026-02-22T05:08:10.259964,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,24811,500,
+2026-02-22T05:08:50.943855,TeamX,Sal Nigro,SELECT * FROM ONLINE_RETAIL,298,500,
+2026-02-22T05:14:39.853007,TeamX,Sal Nigro,SELECT * FROM ONLINE_RETAIL,17834,500,
+2026-02-22T05:15:08.578084,TeamX,Sal Nigro,Q1: Country × Total Revenue,0,0,"Execution failed on sql '
+    SELECT COUNTRY,
+    SUM(QUANTITY * PRICE) AS TOTAL_REVENUE
+    FROM ONLINE_RETAIL
+    GROUP BY COUNTRY
+    ORDER BY TOTAL_REVENUE DESC;
+    LIMIT 50;
+    ': 001003 (42000): SQL compilation error:
+syntax error line 6 at position 4 unexpected 'LIMIT'."
+2026-02-22T05:15:16.712600,TeamX,Sal Nigro,Q2: Description x Total Sold,1362,50,
+2026-02-22T05:15:44.077791,TeamX,Sal Nigro,Q3: Revenue over Time,0,0,"Execution failed on sql '
+    SELECT 
+    DATE_TRUNC('month', INVOICEDATE) AS MONTH,
+    SUM(QUANTITY * PRICE) AS REVENUE
+    FROM ONLINE_RETAIL
+    GROUP BY MONTH
+    ORDER BY MONTH;
+    LIMIT 50;
+    ': 001003 (42000): SQL compilation error:
+syntax error line 7 at position 4 unexpected 'LIMIT'."
+2026-02-22T05:16:03.821560,TeamX,Sal Nigro,Q3: Revenue over Time,0,0,250001 (08001): Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.
+2026-02-22T05:16:27.705406,TeamX,Sal Nigro,Q3: Revenue over Time,0,0,250001 (08001): Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.
+2026-02-22T05:16:50.396513,TeamX,Sal Nigro,Q2: Description x Total Sold,10278,10,
+2026-02-22T05:17:11.811919,TeamX,Sal Nigro,Q1: Country × Total Revenue,0,0,"Execution failed on sql '
+    SELECT COUNTRY,
+    SUM(QUANTITY * PRICE) AS TOTAL_REVENUE
+    FROM ONLINE_RETAIL
+    GROUP BY COUNTRY
+    ORDER BY TOTAL_REVENUE DESC;
+    LIMIT 10;
+    ': 001003 (42000): SQL compilation error:
+syntax error line 6 at position 4 unexpected 'LIMIT'."
+2026-02-22T05:18:26.786017,TeamX,Sal Nigro,SELECT * FROM ONLINE_RETAIL,25339,500,
+2026-02-22T05:18:33.112233,TeamX,Sal Nigro,Q1: Country × Total Revenue,823,43,
+2026-02-22T05:18:40.372591,TeamX,Sal Nigro,Q2: Description x Total Sold,227,50,
+2026-02-22T05:18:44.882474,TeamX,Sal Nigro,Q3: Revenue over Time,587,25,
+2026-02-22T05:19:15.487876,TeamX,Sal Nigro,SELECT * FROM EVENTS,234,5,
+2026-02-22T05:19:52.187114,TeamX,Sal Nigro,UPDATE EVENTS,0,0,
+2026-02-22T05:20:13.345977,TeamX,Sal Nigro,SELECT * FROM EVENTS,254,5,
+2026-02-22T05:20:37.349030,TeamX,Sal Nigro,UPDATE EVENTS,0,1,
+2026-02-22T05:23:16.530308,TeamX,BETTLE Rehan,SELECT * FROM ONLINE_RETAIL,271,500,
+2026-02-22T05:23:21.268268,TeamX,BETTLE Rehan,Q1: Country × Total Revenue,177,43,
+2026-02-22T05:23:24.009144,TeamX,BETTLE Rehan,Q2: Description x Total Sold,171,50,
+2026-02-22T05:23:26.316140,TeamX,BETTLE Rehan,Q3: Revenue over Time,157,25,
+2026-02-22T05:24:02.019664,TeamX,BETTLE Rehan,UPDATE USERS,0,1,
