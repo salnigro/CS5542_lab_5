@@ -66,3 +66,12 @@ syntax error line 6 at position 4 unexpected 'LIMIT'."
 2026-02-22T05:28:08.924863,TeamX,BETTLE Rehan,Q2: Description x Total Sold,134,50,
 2026-02-22T05:28:15.135400,TeamX,BETTLE Rehan,Q3: Revenue over Time,155,25,
 2026-02-22T05:28:43.122335,TeamX,BETTLE Rehan,UPDATE USERS,0,1,
+2026-03-01T02:22:28.076423,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,84123,500,
+2026-03-01T02:34:00.563305,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,313,500,
+2026-03-01T02:34:21.991419,TeamX,StudentName,Financial RAG Query,0,5,
+2026-03-01T02:37:58.845678,Team1,Sal Nigro,Financial RAG Query,0,5,
+2026-03-01T02:40:01.879632,Team1,Sal Nigro,Financial RAG Query,0,5,
+2026-03-01T02:41:01.718761,Team1,Sal Nigro,Financial RAG Query,0,5,
+2026-03-01T02:56:59.427681,TeamX,StudentName,SELECT * FROM OLIST_ORDERS,0,0,250001 (08001): Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.
+2026-03-01T02:57:44.246159,TeamX,StudentName,SELECT * FROM OLIST_ORDERS,0,0,250001 (08001): Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid. You have 4 attempts remaining before the user will be blocked from using authenticator apps for a few minutes.
+2026-03-01T03:01:00.221326,Team1,Sal Nigro,SELECT * FROM OLIST_ORDERS,0,0,250001 (08001): Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.

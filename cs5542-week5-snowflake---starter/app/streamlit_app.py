@@ -29,26 +29,60 @@ from datetime import datetime
 # regardless of where Streamlit is launched from.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from scripts.sf_connect import get_conn
+from scripts.retrieve import Retriever
 
 # ──────────────────── Config ────────────────────
 DB = os.getenv("SNOWFLAKE_DATABASE", "INSTRUCTOR2_DB")
 SCHEMA = os.getenv("SNOWFLAKE_SCHEMA", "MY_SCHEMA")
 LOG_PATH = "logs/pipeline_logs.csv"
-TABLES = ["EVENTS", "USERS", "ONLINE_RETAIL"]
+TABLES = ["EVENTS", "USERS", "ONLINE_RETAIL", "OLIST_ORDERS"]
 
 # ──────────────────── Helpers ────────────────────
 
 def log_event(team: str, user: str, query_name: str, latency_ms: int, rows: int, error: str = ""):
-    """Append one row to the pipeline log CSV file."""
+    """Log to both local CSV and Snowflake QUERY_LOGS table."""
+    
+    # ── Local CSV Logging ──
     os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
     row = {
         "timestamp": datetime.utcnow().isoformat(),
-        "team": team, "user": user, "query_name": query_name,
-        "latency_ms": latency_ms, "rows_returned": rows, "error": error,
+        "team": team,
+        "user": user,
+        "query_name": query_name,
+        "latency_ms": latency_ms,
+        "rows_returned": rows,
+        "error": error,
     }
     df = pd.DataFrame([row])
     header = not os.path.exists(LOG_PATH) or os.path.getsize(LOG_PATH) == 0
     df.to_csv(LOG_PATH, mode="a", header=header, index=False)
+
+    # ── Snowflake Logging ──
+    try:
+        conn = get_cached_conn()
+        cur = conn.cursor()
+
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS QUERY_LOGS (
+                TIMESTAMP TIMESTAMP_NTZ,
+                TEAM STRING,
+                USER_NAME STRING,
+                QUERY_NAME STRING,
+                LATENCY_MS NUMBER,
+                ROWS_RETURNED NUMBER,
+                ERROR STRING
+            );
+        """)
+
+        cur.execute("""
+            INSERT INTO QUERY_LOGS
+            (TIMESTAMP, TEAM, USER_NAME, QUERY_NAME, LATENCY_MS, ROWS_RETURNED, ERROR)
+            VALUES (CURRENT_TIMESTAMP, %s, %s, %s, %s, %s, %s)
+        """, (team, user, query_name, latency_ms, rows, error))
+
+        cur.close()
+    except Exception:
+        pass
 
 @st.cache_resource
 def get_cached_conn():
@@ -109,7 +143,14 @@ with st.sidebar:
 # TAB 1: DATA EXPLORER  |  TAB 2: ANALYTICS  |  TAB 3: UPDATE RECORDS  |  TAB 4: LOGS
 # ══════════════════════════════════════════════════════════════
 
-tab1, tab2, tab3, tab4 = st.tabs(["📋 Data Explorer", "📊 Analytics", "✏️ Update Records", "📝 Logs"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    "📋 Data Explorer",
+    "📊 Analytics",
+    "✏️ Update Records",
+    "📝 Logs (Local)",
+    "🏗 Warehouse Status",
+    "🧠 Financial RAG"
+])
 
 # ────────────────── TAB 1: DATA EXPLORER ──────────────────
 with tab1:
@@ -304,3 +345,52 @@ with tab4:
         st.dataframe(log_df.tail(50), use_container_width=True, height=400)
     else:
         st.info("No logs yet. Run a query to generate logs.")
+    st.markdown("---")
+    st.subheader("Snowflake QUERY_LOGS Table")
+
+    if st.button("Load Snowflake Logs"):
+        try:
+            df, _ = run_query("SELECT * FROM QUERY_LOGS ORDER BY TIMESTAMP DESC LIMIT 50;")
+            st.dataframe(df, use_container_width=True)
+        except Exception as e:
+            st.error(f"Error loading Snowflake logs: {e}")
+
+with tab5:
+    st.subheader("Snowflake Warehouse Status")
+
+    if st.button("Check Warehouse"):
+        try:
+            sql = "SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_SCHEMA();"
+            df, latency = run_query(sql)
+            st.dataframe(df)
+            st.success(f"Connected successfully in {latency} ms")
+        except Exception as e:
+            st.error(f"Connection error: {e}")
+
+
+# ────────────────── TAB 6: FINANCIAL RAG ──────────────────
+with tab6:
+    st.subheader("Financial News Retrieval (Twitter Sentiment Dataset)")
+
+    query = st.text_input("Ask a financial question")
+
+    if st.button("Retrieve Evidence"):
+        try:
+            retriever = Retriever()
+            results = retriever.search(query, k=5)
+
+            st.markdown("### Retrieved Financial Sentiment Chunks")
+            for i, r in enumerate(results):
+                st.markdown(f"**Result {i+1}:**")
+                st.write(r["text"])
+                st.markdown("---")
+
+            # 👇 ADD THIS HERE
+            combined_text = " ".join([r["text"] for r in results])
+
+            st.markdown("### Combined Context")
+            st.write(combined_text[:1000])
+
+        except Exception as e:
+            st.error(f"Retrieval error: {e}")
+
