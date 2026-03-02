@@ -49,7 +49,7 @@ def main():
 
     stage_name = "CS5542_STAGE"
     file_format = "CS5542_CSV_FMT"
-
+    
     # Use a SINGLE connection for all operations.
     # This is important for externalbrowser auth — otherwise each get_conn()
     # call opens a new browser popup asking you to log in.
@@ -67,7 +67,19 @@ def main():
         cur.execute(f"CREATE DATABASE IF NOT EXISTS {db};")
         cur.execute(f"USE DATABASE {db};")
         cur.execute(f"USE SCHEMA {schema};")
-
+        if target_table == "OLIST_ORDERS":
+            cur.execute(f"""
+            CREATE TABLE IF NOT EXISTS {db}.{schema}.OLIST_ORDERS (
+                order_id STRING,
+                customer_id STRING,
+                order_status STRING,
+                order_purchase_timestamp TIMESTAMP_NTZ,
+                order_approved_at TIMESTAMP_NTZ,
+                order_delivered_carrier_date TIMESTAMP_NTZ,
+                order_delivered_customer_date TIMESTAMP_NTZ,
+                order_estimated_delivery_date TIMESTAMP_NTZ
+            );
+            """)
         # Create tables if they don't exist
         cur.execute(f"""
         CREATE TABLE IF NOT EXISTS {db}.{schema}.EVENTS (

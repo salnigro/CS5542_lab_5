@@ -222,11 +222,38 @@ with tab2:
     ORDER BY MONTH
     LIMIT {limit};
     """
+    q4 = f"""
+    SELECT 
+    ORDER_STATUS,
+    COUNT(*) AS TOTAL_ORDERS
+    FROM OLIST_ORDERS
+    GROUP BY ORDER_STATUS
+    ORDER BY TOTAL_ORDERS DESC;
+    """
+    q5 = f"""
+    SELECT 
+    DATE_TRUNC('month', ORDER_PURCHASE_TIMESTAMP) AS MONTH,
+    COUNT(*) AS TOTAL_ORDERS
+    FROM OLIST_ORDERS
+    GROUP BY MONTH
+    ORDER BY MONTH;
+    """
+    q6 = f"""
+    SELECT 
+    COUNT(*) AS TOTAL_ORDERS,
+    COUNT_IF(ORDER_DELIVERED_CUSTOMER_DATE > ORDER_ESTIMATED_DELIVERY_DATE) 
+        AS LATE_DELIVERIES
+    FROM OLIST_ORDERS
+    WHERE ORDER_STATUS = 'delivered';
+    """
 
     queries = {
         "Q1: Country × Total Revenue": q1,
         "Q2: Description x Total Sold": q2,
         "Q3: Revenue over Time": q3,
+        "Q4: Orders by Status": q4,
+        "Q5: Orders Over Time": q5,
+        "Q6: Delivery Performance": q6,
     }
 
     choice = st.selectbox("Choose query", list(queries.keys()))
@@ -276,7 +303,8 @@ with tab3:
     table_columns = {
         "EVENTS": ["EVENT_ID", "EVENT_TIME", "TEAM", "CATEGORY", "VALUE"],
         "USERS":  ["USER_ID", "TEAM", "ROLE", "CREATED_AT"],
-        "ONLINE_RETAIL":["Invoice","StockCode","Description","Quantity","InvoiceDate","Price","Customer ID","Country"]
+        "ONLINE_RETAIL":["Invoice","StockCode","Description","Quantity","InvoiceDate","Price","Customer ID","Country"],
+        "OLIST_ORDERS": ["order_id","customer_id","order_status","order_purchase_timestamp","order_approved_at","order_delivered_carrier_date","order_delivered_customer_date","order_estimated_delivery_date"]
     }
 
     cols = table_columns.get(update_table, [])
@@ -379,9 +407,12 @@ with tab6:
             retriever = Retriever()
             results = retriever.search(query, k=5)
 
-            st.markdown("### Retrieved Financial Sentiment Chunks")
+            st.markdown("### Retrieved Chunks")
+
             for i, r in enumerate(results):
-                st.markdown(f"**Result {i+1}:**")
+                st.markdown(
+                    f"**Result {i+1}** | Source: `{r['source']}` | Score: `{r['score']:.2f}`"
+                )
                 st.write(r["text"])
                 st.markdown("---")
 

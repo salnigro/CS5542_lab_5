@@ -4,3 +4,8 @@ python-dotenv
 streamlit
 altair
 watchdog
+faiss-cpu
+sentence-transformers
+datasets
+pickle
+datetime

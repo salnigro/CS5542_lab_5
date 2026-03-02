@@ -16,25 +16,20 @@ class Retriever:
     def search(self, query, k=5):
         query_vec = self.model.encode([query]).astype("float32")
 
-        distances, indices = self.index.search(query_vec, k * 3)
+        distances, indices = self.index.search(query_vec, k)
 
         results = []
-        seen_texts = set()
 
-        for idx in indices[0]:
-            text = self.metadata[idx]["text"]
+        for i, idx in enumerate(indices[0]):
+            item = self.metadata[idx]
 
-            if text in seen_texts:
-                continue
-
-            seen_texts.add(text)
-            results.append(self.metadata[idx])
-
-            if len(results) >= k:
-                break
+            results.append({
+                "text": item["text"],
+                "source": item.get("source", "unknown"),
+                "score": float(distances[0][i])
+            })
 
         return results
-
 if __name__ == "__main__":
     r = Retriever()
     results = r.search("financial market growth outlook")

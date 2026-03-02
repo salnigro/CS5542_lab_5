@@ -635,3 +635,11 @@ GROUP BY U.TEAM, U.ROLE, E.CATEGORY ORDER BY N DESC;
 
 ## Notes / Bottlenecks
 -
+## Run Instructions 
+- pip install requirements.txt
+- python scripts/preprocess_text.py
+- python scripts/build_index.py
+- python scripts/hybrid_query.py
+- python scripts/load_local_csv_to_stage.py data/online_retail_II.csv online_retail
+- python scripts/load_local_csv_to_stage.py data/olist_orders_dataset.csv olist_orders
+- streamlit run app/streamlit_app.py 
