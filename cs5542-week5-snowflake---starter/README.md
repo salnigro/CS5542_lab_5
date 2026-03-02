@@ -643,3 +643,12 @@ GROUP BY U.TEAM, U.ROLE, E.CATEGORY ORDER BY N DESC;
 - python scripts/load_local_csv_to_stage.py data/online_retail_II.csv online_retail
 - python scripts/load_local_csv_to_stage.py data/olist_orders_dataset.csv olist_orders
 - streamlit run app/streamlit_app.py 
+
+## pipeline architecture diagram
+
+-External Data -- twitter financial news, online_retail_II.csv, olist_orders_dataset.csv
+- -- > preproccessing and chunking -- preprocessing_text.py -- clean_text(), chunk_Text(), duplication, outputs processed_text.csv
+- ---> embedding + faiss index -- build_index.py -- sentence tranformer, fiass index, metadata.pkl
+- ---> runtime layer --- Retriever -> top k text chunks  Snowflake SQL -> aggregation
+- ---> streamlit UI layer  -  Data explorer, analytics, update records, warehouse, rag system
+- ---> logging and monitoring - pipe_logs.csv, snowflake QUERY_logs 
