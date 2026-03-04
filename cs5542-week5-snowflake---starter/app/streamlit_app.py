@@ -452,6 +452,13 @@ with tab7:
                     inputs = {"messages": st.session_state.messages}
                     result = agent.invoke(inputs)
                     response = result["messages"][-1].content
+                    
+                    # Gemini 2.5 returns structured content as a list of dicts. Flatten it to a string.
+                    if isinstance(response, list):
+                        response = "".join(
+                            part.get("text", "") for part in response if isinstance(part, dict) and "text" in part
+                        )
+                        
                     st.markdown(response)
                     st.session_state.messages.append({"role": "assistant", "content": response})
                 except Exception as e:

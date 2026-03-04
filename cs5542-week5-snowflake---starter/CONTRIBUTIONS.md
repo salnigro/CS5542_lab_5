@@ -10,6 +10,8 @@
   - Build_index.py
   - proprocessed_data.py
   - added warehouse status check
+  - implemented ai agent
+  - implemented ai ui 
 - Evidence (PR/commits):
   - https://github.com/salnigro/CS5542_lab_5/commit/4f2708ac95f2bb7072c7bf428eff00b869e4428c
   - https://github.com/salnigro/CS5542_lab_5/commit/2a3436059671290f3fbadbdb78687ec12a5efeb6

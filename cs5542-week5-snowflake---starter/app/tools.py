@@ -55,14 +55,15 @@ def query_snowflake(sql_query: str) -> str:
         if not sql_query.strip().upper().startswith("SELECT"):
             return "Error: Only SELECT queries are permitted for safety."
 
-        with get_conn() as conn:
-            df = pd.read_sql(sql_query, conn)
-            
-            if df.empty:
-                return "Query executed successfully, but returned 0 rows."
-            
-            # Format dataframe as markdown table string to return to LLM
-            return df.to_markdown(index=False)
+        from app.streamlit_app import get_cached_conn
+        conn = get_cached_conn()
+        df = pd.read_sql(sql_query, conn)
+        
+        if df.empty:
+            return "Query executed successfully, but returned 0 rows."
+        
+        # Format dataframe as markdown table string to return to LLM
+        return df.to_markdown(index=False)
             
     except Exception as e:
         return f"Database Error executing query '{sql_query}': {str(e)}"
