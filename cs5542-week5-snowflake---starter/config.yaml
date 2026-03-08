@@ -1,0 +1,7 @@
+faiss:
+  dimension: 384             # Matches the dimensionality of all-MiniLM-L6-v2
+  nlist: 10                  # Number of coarse quantizer centroids (clusters)
+  m: 8                       # Number of sub-quantizers for PQ
+  nbits: 8                   # Number of bits for each sub-quantizer
+  seed: 42                   # Random seed for deterministic reproducibility
+  nprobe: 2                  # Number of clusters to visit during search

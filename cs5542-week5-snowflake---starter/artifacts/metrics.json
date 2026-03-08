@@ -1,0 +1,17 @@
+{
+    "dataset_size": 50000,
+    "dimension": 384,
+    "ivfpq_params": {
+        "nlist": 10,
+        "m": 8,
+        "nbits": 8,
+        "nprobe": 2
+    },
+    "metrics": {
+        "recall": 0.002,
+        "baseline_search_time_sec": 0.1233680248260498,
+        "ivfpq_train_time_sec": 4.558162689208984,
+        "ivfpq_search_time_sec": 0.0035843849182128906,
+        "speedup": 34.41818544632167
+    }
+}

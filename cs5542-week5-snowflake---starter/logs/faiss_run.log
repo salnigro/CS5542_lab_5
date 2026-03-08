@@ -1,0 +1,20 @@
+2026-03-08 13:59:50,060 - INFO - Starting FAISS reproducibility test...
+2026-03-08 13:59:50,064 - INFO - Generating synthetic dataset: 50000 training samples, 100 queries (dim=384).
+2026-03-08 13:59:50,629 - INFO - Building IndexFlatL2 (Brute Force baseline)...
+2026-03-08 13:59:50,757 - INFO - Baseline search completed in 0.0965 seconds.
+2026-03-08 13:59:50,757 - INFO - Building IndexIVFPQ (nlist=10, m=8, nbits=8)...
+2026-03-08 13:59:55,321 - INFO - IVFPQ training completed in 4.5642 seconds.
+2026-03-08 13:59:55,821 - INFO - IVFPQ search completed in 0.0044 seconds with nprobe=2.
+2026-03-08 13:59:55,861 - INFO - Recall@5: 0.0020
+2026-03-08 13:59:55,862 - INFO - Speedup vs Baseline: 21.89x
+2026-03-08 13:59:55,866 - INFO - Metrics successfully saved to artifacts/metrics.json
+2026-03-08 14:01:21,886 - INFO - Starting FAISS reproducibility test...
+2026-03-08 14:01:21,891 - INFO - Generating synthetic dataset: 50000 training samples, 100 queries (dim=384).
+2026-03-08 14:01:22,353 - INFO - Building IndexFlatL2 (Brute Force baseline)...
+2026-03-08 14:01:22,502 - INFO - Baseline search completed in 0.1234 seconds.
+2026-03-08 14:01:22,503 - INFO - Building IndexIVFPQ (nlist=10, m=8, nbits=8)...
+2026-03-08 14:01:27,062 - INFO - IVFPQ training completed in 4.5582 seconds.
+2026-03-08 14:01:27,576 - INFO - IVFPQ search completed in 0.0036 seconds with nprobe=2.
+2026-03-08 14:01:27,578 - INFO - Recall@5: 0.0020
+2026-03-08 14:01:27,578 - INFO - Speedup vs Baseline: 34.42x
+2026-03-08 14:01:27,581 - INFO - Metrics successfully saved to artifacts/metrics.json

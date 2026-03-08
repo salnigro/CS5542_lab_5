@@ -7,5 +7,5 @@ watchdog
 faiss-cpu
 sentence-transformers
 datasets
-pickle
-datetime
+pytest
+pyyaml
