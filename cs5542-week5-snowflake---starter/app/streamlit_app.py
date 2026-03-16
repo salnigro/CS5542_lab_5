@@ -32,12 +32,10 @@ from scripts.sf_connect import get_conn
 from scripts.retrieve import Retriever
 from app.chat_agent import get_agent
 
-from scripts.config import config
-
 # ──────────────────── Config ────────────────────
 DB = os.getenv("SNOWFLAKE_DATABASE", "INSTRUCTOR2_DB")
 SCHEMA = os.getenv("SNOWFLAKE_SCHEMA", "MY_SCHEMA")
-LOG_PATH = config.get("logging", {}).get("pipeline_log_file", "logs/pipeline_logs.csv")
+LOG_PATH = "logs/pipeline_logs.csv"
 TABLES = ["EVENTS", "USERS", "ONLINE_RETAIL", "OLIST_ORDERS"]
 
 # ──────────────────── Helpers ────────────────────
@@ -146,14 +144,15 @@ with st.sidebar:
 # TAB 1: DATA EXPLORER  |  TAB 2: ANALYTICS  |  TAB 3: UPDATE RECORDS  |  TAB 4: LOGS
 # ══════════════════════════════════════════════════════════════
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
     "📋 Data Explorer",
     "📊 Analytics",
     "✏️ Update Records",
     "📝 Logs (Local)",
     "🏗 Warehouse Status",
     "🧠 Financial RAG",
-    "🤖 Agent Chat"
+    "🤖 Agent Chat",
+    "⚖️ Domain Eval"
 ])
 
 # ────────────────── TAB 1: DATA EXPLORER ──────────────────
@@ -465,3 +464,36 @@ with tab7:
                     st.session_state.messages.append({"role": "assistant", "content": response})
                 except Exception as e:
                     st.error(f"Agent Execution Error: {str(e)}")
+
+# ────────────────── TAB 8: DOMAIN EVALUATION ──────────────────
+with tab8:
+    st.subheader("Domain Adaptation Evaluation")
+    st.write("Compare the generic baseline agent with the specialized domain-adapted agent.")
+    
+    eval_query = st.text_area(
+        "Enter evaluation query", 
+        value="Assess the sentiment and business outlook based on recent order fulfillment metrics."
+    )
+    
+    if st.button("⚖️ Run Comparison", type="primary"):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("### 🤖 Baseline (Generic)")
+            with st.spinner("Running Baseline Agent..."):
+                try:
+                    baseline_agent = get_agent(adapted=False)
+                    base_res = baseline_agent.invoke({"messages": [("user", eval_query)]})
+                    st.info(base_res["messages"][-1].content)
+                except Exception as e:
+                    st.error(f"Error: {e}")
+                    
+        with col2:
+            st.markdown("### 🎓 Adapted (Domain Expert)")
+            with st.spinner("Running Adapted Agent..."):
+                try:
+                    adapted_agent = get_agent(adapted=True)
+                    adapt_res = adapted_agent.invoke({"messages": [("user", eval_query)]})
+                    st.success(adapt_res["messages"][-1].content)
+                except Exception as e:
+                    st.error(f"Error: {e}")

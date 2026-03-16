@@ -29,4 +29,11 @@
 - Tested:
   - Queries/Results
 
+---
 
+## Domain Adaptation Lab (Week 8)
+
+| Student | Contribution | Percentage |
+|---|---|---|
+| Sal Nigro | Fine-Tuning Script Implementation & App Integration (Tabs) | 50% |
+| Rehan Ali | Instruction Dataset Creation & Automated Evaluation Pipeline | 50% |

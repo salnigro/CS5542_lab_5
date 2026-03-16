@@ -14,7 +14,10 @@ class Retriever:
         self.index = faiss.read_index("retrieval/index.faiss")
         
         # Set nprobe metric for IVF search
-        faiss.ParameterSpace().set_index_parameter(self.index, "nprobe", self.config["nprobe"])
+        try:
+            faiss.ParameterSpace().set_index_parameter(self.index, "nprobe", self.config["nprobe"])
+        except Exception:
+            pass
 
         with open("retrieval/metadata.pkl", "rb") as f:
             self.metadata = pickle.load(f)
