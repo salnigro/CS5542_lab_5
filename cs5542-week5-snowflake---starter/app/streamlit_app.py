@@ -491,39 +491,50 @@ with tab7:
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
-        
+
+    # Display previous messages
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
-            
+
+    # User input
     if prompt := st.chat_input("E.g., What was the total revenue in France, and were there any news about tech stocks?"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
-            
-        with st.chat_message("assistant"):
-            status = st.status("Agent is reasoning and fetching data...", expanded=True)
+
+        # Agent response with spinner
+        with st.chat_message("assistant"), st.spinner("Agent is reasoning and fetching data..."):
             try:
                 logger.info(f"Agent invoked with prompt: {prompt}")
                 agent = get_agent()
                 inputs = {"messages": st.session_state.messages}
+                start_time = time.time()
+
                 result = agent.invoke(inputs)
-                
+
+                # ⏱️ End time
+                end_time = time.time()
+                latency = int((end_time - start_time) * 1000)
+                logger.info(f"Agent response time: {latency} ms")
+
+                # Extract response text
                 response = result["messages"][-1].content
                 if isinstance(response, list):
                     response = "".join(
                         part.get("text", "") for part in response if isinstance(part, dict) and "text" in part
                     )
-                    
-                status.update(label="Task Complete!", state="complete", expanded=False)
+
                 st.markdown(response)
+
+                # Optional strong logging
+                log_event(team, user, "Agent Query", latency, 1)
                 st.session_state.messages.append({"role": "assistant", "content": response})
                 logger.info("Agent execution successful.")
+
             except Exception as e:
                 logger.error(f"Agent Execution Error: {e}", exc_info=True)
-                status.update(label="Agent Error", state="error", expanded=False)
                 st.error(f"Agent Execution Error: {str(e)}")
-
 # ────────────────── TAB 8: DOMAIN EVALUATION ──────────────────
 with tab8:
     st.subheader("Domain Adaptation Evaluation")
