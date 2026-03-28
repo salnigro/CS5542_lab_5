@@ -2,7 +2,7 @@ snowflake-connector-python[secure-local-storage]
 pandas
 python-dotenv
 streamlit
-altair
+altair<5
 watchdog
 faiss-cpu
 sentence-transformers
