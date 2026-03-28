@@ -644,11 +644,49 @@ GROUP BY U.TEAM, U.ROLE, E.CATEGORY ORDER BY N DESC;
 - python scripts/load_local_csv_to_stage.py data/olist_orders_dataset.csv olist_orders
 - streamlit run app/streamlit_app.py 
 
-## pipeline architecture diagram
+## Pipeline Architecture Diagram
 
--External Data -- twitter financial news, online_retail_II.csv, olist_orders_dataset.csv
-- -- > preproccessing and chunking -- preprocessing_text.py -- clean_text(), chunk_Text(), duplication, outputs processed_text.csv
-- ---> embedding + faiss index -- build_index.py -- sentence tranformer, fiass index, metadata.pkl
-- ---> runtime layer --- Retriever -> top k text chunks  Snowflake SQL -> aggregation
-- ---> streamlit UI layer  -  Data explorer, analytics, update records, warehouse, rag system
-- ---> logging and monitoring - pipe_logs.csv, snowflake QUERY_logs 
+```mermaid
+flowchart TD
+    subgraph Data Sources
+        A1[Online Retail Dataset]
+        A2[Olist Orders Dataset]
+        A3[Twitter Financial News]
+    end
+
+    subgraph Preprocessing Layer
+        B1["Text Preprocessing\n(preprocess_text.py)"]
+        B2["Data Ingestion\n(load_local_csv_to_stage.py)"]
+    end
+    
+    subgraph Data Storage
+        C1[("Snowflake Data Warehouse\n(Structured Data)")]
+        C2[("FAISS Vector Index\n(Unstructured Embeddings)")]
+    end
+    
+    subgraph Reasoning & Retrieval Layer
+        D1["AI Agent Logic\n(chat_agent.py)"]
+        D2["RAG Retriever\n(retrieve.py)"]
+        D3["Domain-Adapted LLM (Gemini)"]
+    end
+    
+    subgraph Interface & Application
+        E1["Streamlit UI Dashboard\n(Data Explorer, RAG, Chat)"]
+        E2["Logging & Monitoring\n(pipeline_logs.csv, QUERY_LOGS)"]
+    end
+
+    A1 --> B2
+    A2 --> B2
+    A3 --> B1
+    
+    B1 --> C2
+    B2 --> C1
+    
+    C1 <--> D1
+    C2 <--> D2
+    D2 <--> D1
+    D3 <--> D1
+    
+    D1 <--> E1
+    E1 --> E2
+```

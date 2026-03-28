@@ -81,3 +81,6 @@ syntax error line 6 at position 4 unexpected 'LIMIT'."
 2026-03-02T01:37:02.479158,Team1,Sal Nigro,Q4: Orders by Status,992,8,
 2026-03-07T23:01:02.030063,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,19424,500,
 2026-03-07T23:01:16.014880,TeamX,StudentName,Q1: Country × Total Revenue,1023,43,
+2026-03-28T21:44:13.098103,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,26352,500,
+2026-03-28T21:45:10.740269,TeamX,StudentName,SELECT * FROM OLIST_ORDERS,13256,500,
+2026-03-28T21:58:47.291814,TeamX,StudentName,SELECT * FROM ONLINE_RETAIL,0,0,250001 (08001): None: Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.

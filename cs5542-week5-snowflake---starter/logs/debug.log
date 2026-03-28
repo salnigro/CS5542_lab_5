@@ -1,0 +1,569 @@
+2026-03-28 16:29:16,889 - INFO - __main__ - Running Baseline Eval Agent
+2026-03-28 16:29:16,889 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-03-28 16:29:27,551 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:29:27,563 - INFO - app.tools - Tool call: search_financial_news(query='recent order fulfillment metrics')
+2026-03-28 16:29:27,570 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  AVG(DATEDIFF('hour', order_purchase_timestamp, order_approved_at)) AS avg_processing_time_hours,
+  AVG(DATEDIFF('hour', order_approved_at, order_delivered_carrier_date)) AS avg_carrier_time_hours,
+  AVG(DATEDIFF('hour', order_delivered_carrier_date, order_delivered_customer_date)) AS avg_delivery_time_hours,
+  AVG(DATEDIFF('hour', order_purchase_timestamp, order_delivered_customer_date)) AS avg_total_fulfillment_time_hours
+FROM OLIST_ORDERS
+WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL;
+')
+2026-03-28 16:29:27,577 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:29:27,577 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:29:28,089 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,104 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,170 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,183 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,241 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,254 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,314 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,326 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,387 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,400 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,458 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,474 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,532 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:29:28,609 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,610 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-28 16:29:28,624 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:28,949 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:28,963 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:29,033 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:29,047 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:29,121 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:29:29,182 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:29:29,346 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:29,360 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:29,435 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:29:29,675 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 16:29:37,568 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:29:37,574 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  AVG(DATEDIFF('hour', CAST(order_purchase_timestamp AS TIMESTAMP), CAST(order_approved_at AS TIMESTAMP))) AS avg_processing_time_hours,
+  AVG(DATEDIFF('hour', CAST(order_approved_at AS TIMESTAMP), CAST(order_delivered_carrier_date AS TIMESTAMP))) AS avg_carrier_time_hours,
+  AVG(DATEDIFF('hour', CAST(order_delivered_carrier_date AS TIMESTAMP), CAST(order_delivered_customer_date AS TIMESTAMP))) AS avg_delivery_time_hours,
+  AVG(DATEDIFF('hour', CAST(order_purchase_timestamp AS TIMESTAMP), CAST(order_delivered_customer_date AS TIMESTAMP))) AS avg_total_fulfillment_time_hours
+FROM OLIST_ORDERS
+WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL;
+')
+2026-03-28 16:29:37,577 - INFO - app.tools - Tool call: search_financial_news(query='retail industry sentiment')
+2026-03-28 16:29:37,585 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:29:37,585 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:29:37,696 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:37,709 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:37,768 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:37,785 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:37,848 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:37,861 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:37,926 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:37,937 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,001 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,015 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,079 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,092 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,146 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:29:38,209 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,221 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,350 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,367 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,433 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,452 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,517 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:29:38,580 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,696 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:29:38,711 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,772 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:29:38,870 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 16:29:47,372 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:29:47,392 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  Country,
+  COUNT(DISTINCT Invoice) AS number_of_orders,
+  SUM(Quantity * Price) AS total_revenue
+FROM ONLINE_RETAIL
+GROUP BY Country
+ORDER BY total_revenue DESC
+LIMIT 10;
+')
+2026-03-28 16:29:54,247 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:29:54,252 - INFO - __main__ - Running Adapted Eval Agent
+2026-03-28 16:29:54,252 - INFO - app.chat_agent - Initializing agent with adapted=True
+2026-03-28 16:30:00,102 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:00,108 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_time
+FROM OLIST_ORDERS
+WHERE
+  order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL
+ORDER BY
+  order_purchase_timestamp DESC
+LIMIT 1000;
+')
+2026-03-28 16:30:04,745 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:04,751 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_days
+FROM OLIST_ORDERS
+WHERE order_purchase_timestamp >= DATEADD('day', -90, CURRENT_TIMESTAMP())
+  AND order_status = 'delivered'
+  AND order_delivered_customer_date IS NOT NULL;
+')
+2026-03-28 16:30:09,832 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:09,837 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT order_purchase_timestamp, order_delivered_customer_date FROM OLIST_ORDERS WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL LIMIT 5;')
+2026-03-28 16:30:13,851 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:13,856 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT order_purchase_timestamp, order_delivered_customer_date FROM OLIST_ORDERS WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL ORDER BY order_purchase_timestamp DESC LIMIT 100;')
+2026-03-28 16:30:18,128 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:18,135 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  CAST(InvoiceDate AS DATE) AS invoice_day,
+  COUNT(DISTINCT Invoice) AS daily_invoices
+FROM ONLINE_RETAIL
+GROUP BY
+  invoice_day
+ORDER BY
+  invoice_day DESC
+LIMIT 14;
+')
+2026-03-28 16:30:23,003 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,008 - INFO - app.tools - Tool call: search_financial_news(query='order fulfillment issues')
+2026-03-28 16:30:23,018 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:30:23,018 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:30:23,114 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,126 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,184 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,196 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,260 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,274 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,334 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,350 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,406 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,419 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,478 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,492 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,550 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:30:23,603 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,618 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,739 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,754 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,821 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:23,834 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:23,892 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:30:23,960 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:30:24,074 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:30:24,088 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:30:24,154 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:30:24,266 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 16:30:29,331 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:43:33,297 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:43:53,974 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:43:53,974 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:43:59,655 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:44:10,083 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:44:10,083 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:44:24,166 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:44:24,166 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:44:27,872 - ERROR - snowflake.connector.token_cache - Failed to delete credential in the keyring: err=[EAGLE:SFEDU02-DCB73175.SNOWFLAKECOMPUTING.COM:MFA_TOKEN]
+2026-03-28 16:44:38,539 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:44:47,768 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:44:47,768 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:44:51,801 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:45:07,071 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:45:07,072 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:45:15,547 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:45:15,548 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:45:18,163 - ERROR - snowflake.connector.token_cache - Failed to delete credential in the keyring: err=[EAGLE:SFEDU02-DCB73175.SNOWFLAKECOMPUTING.COM:MFA_TOKEN]
+2026-03-28 16:45:54,708 - INFO - __main__ - Running Baseline Eval Agent
+2026-03-28 16:45:54,709 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-03-28 16:46:05,928 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:05,933 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    AVG(DATEDIFF(day, order_purchase_timestamp, order_approved_at)) AS avg_approval_time,
+    AVG(DATEDIFF(day, order_approved_at, order_delivered_carrier_date)) AS avg_carrier_time,
+    AVG(DATEDIFF(day, order_delivered_carrier_date, order_delivered_customer_date)) AS avg_delivery_time,
+    AVG(DATEDIFF(day, order_purchase_timestamp, order_delivered_customer_date)) AS avg_total_fulfillment_days,
+    AVG(DATEDIFF(day, order_estimated_delivery_date, order_delivered_customer_date)) AS avg_days_early
+FROM OLIST_ORDERS
+WHERE order_status = 'delivered';
+')
+2026-03-28 16:46:05,936 - INFO - app.tools - Tool call: search_financial_news(query='recent retail industry sentiment')
+2026-03-28 16:46:05,952 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:46:05,960 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:46:06,083 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,096 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,152 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,165 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,222 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,236 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,296 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,314 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,369 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,381 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,439 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,451 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,504 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:46:06,557 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,572 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,697 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,709 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,765 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:06,782 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:06,840 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:46:06,923 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:46:07,045 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:46:07,057 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:46:07,114 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:46:07,206 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 16:46:16,528 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:16,533 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    AVG(DATEDIFF(day, CAST(order_purchase_timestamp AS TIMESTAMP), CAST(order_approved_at AS TIMESTAMP))) AS avg_approval_time,
+    AVG(DATEDIFF(day, CAST(order_approved_at AS TIMESTAMP), CAST(order_delivered_carrier_date AS TIMESTAMP))) AS avg_carrier_time,
+    AVG(DATEDIFF(day, CAST(order_delivered_carrier_date AS TIMESTAMP), CAST(order_delivered_customer_date AS TIMESTAMP))) AS avg_delivery_time,
+    AVG(DATEDIFF(day, CAST(order_purchase_timestamp AS TIMESTAMP), CAST(order_delivered_customer_date AS TIMESTAMP))) AS avg_total_fulfillment_days,
+    AVG(DATEDIFF(day, CAST(order_estimated_delivery_date AS TIMESTAMP), CAST(order_delivered_customer_date AS TIMESTAMP))) AS avg_days_early
+FROM OLIST_ORDERS
+WHERE order_status = 'delivered';
+')
+2026-03-28 16:46:23,189 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:23,195 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    order_purchase_timestamp,
+    order_approved_at,
+    order_delivered_carrier_date,
+    order_delivered_customer_date,
+    order_estimated_delivery_date,
+    order_status
+FROM OLIST_ORDERS
+LIMIT 10;
+')
+2026-03-28 16:46:30,592 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:30,608 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    Country,
+    COUNT(DISTINCT Invoice) AS total_invoices,
+    AVG(Quantity) AS avg_quantity_per_item
+FROM ONLINE_RETAIL
+GROUP BY Country
+ORDER BY total_invoices DESC
+LIMIT 10;
+')
+2026-03-28 16:46:46,491 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:46,496 - INFO - __main__ - Running Adapted Eval Agent
+2026-03-28 16:46:46,496 - INFO - app.chat_agent - Initializing agent with adapted=True
+2026-03-28 16:46:54,773 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:46:54,778 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_days FROM OLIST_ORDERS WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL AND order_purchase_timestamp IS NOT NULL;')
+2026-03-28 16:47:00,501 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:47:00,505 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT order_purchase_timestamp, order_delivered_customer_date FROM OLIST_ORDERS WHERE order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL AND order_purchase_timestamp IS NOT NULL LIMIT 5;')
+2026-03-28 16:47:05,175 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:47:05,181 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT count(*) FROM OLIST_ORDERS')
+2026-03-28 16:47:10,046 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:47:10,050 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT count(*) FROM ONLINE_RETAIL')
+2026-03-28 16:47:16,202 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,209 - INFO - app.tools - Tool call: search_financial_news(query='order fulfillment sentiment and business outlook')
+2026-03-28 16:47:16,223 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:47:16,223 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:47:16,341 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,357 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,415 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,426 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,478 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,490 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,552 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,567 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,623 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,640 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,700 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,715 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,775 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:47:16,831 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,844 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:16,970 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:16,983 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:17,044 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:17,060 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:17,116 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:47:17,181 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:47:17,302 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:47:17,316 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:47:17,389 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:47:17,482 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 16:47:25,375 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:56:43,017 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:58:37,576 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:58:37,577 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:58:41,465 - INFO - __main__ - Cache miss for query, querying DB...
+2026-03-28 16:58:44,468 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:58:44,468 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:58:47,277 - ERROR - snowflake.connector.token_cache - Failed to delete credential in the keyring: err=[EAGLE:SFEDU02-DCB73175.SNOWFLAKECOMPUTING.COM:MFA_TOKEN]
+2026-03-28 16:58:47,282 - ERROR - __main__ - Error loading data for ONLINE_RETAIL: 250001 (08001): None: Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\streamlit_app.py", line 225, in <module>
+    schema_df, _ = run_query_cached(schema_sql)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\caching\cache_utils.py", line 281, in __call__
+    return self._get_or_create_cached_value(args, kwargs, spinner_message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\caching\cache_utils.py", line 326, in _get_or_create_cached_value
+    return self._handle_cache_miss(cache, value_key, func_args, func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\streamlit\runtime\caching\cache_utils.py", line 385, in _handle_cache_miss
+    computed_value = self._info.func(*func_args, **func_kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\streamlit_app.py", line 136, in run_query_cached
+    conn = get_conn() # Do not use the cached connection resource inside a cache_data, instead get a new or separate connection or rely on sf_connect
+           ^^^^^^^^^^
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\scripts\sf_connect.py", line 94, in get_conn
+    return snowflake.connector.connect(**{k: v for k, v in conn_kwargs.items() if v})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\__init__.py", line 76, in Connect
+    return SnowflakeConnection(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\connection.py", line 681, in __init__
+    self.connect(**kwargs)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\connection.py", line 1177, in connect
+    self.__open_connection()
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\connection.py", line 1616, in __open_connection
+    self.authenticate_with_retry(self.auth_class)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\connection.py", line 1952, in authenticate_with_retry
+    self._authenticate(auth_instance)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\connection.py", line 1984, in _authenticate
+    auth.authenticate(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\auth\_auth.py", line 444, in authenticate
+    Error.errorhandler_wrapper(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 298, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 361, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 229, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.DatabaseError: 250001 (08001): None: Failed to connect to DB: SFEDU02-DCB73175.snowflakecomputing.com:443. TOTP Invalid.
+2026-03-28 16:58:50,468 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 16:58:50,468 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 16:58:53,094 - ERROR - snowflake.connector.token_cache - Failed to delete credential in the keyring: err=[EAGLE:SFEDU02-DCB73175.SNOWFLAKECOMPUTING.COM:MFA_TOKEN]
+2026-03-28 16:59:08,762 - INFO - __main__ - Running Baseline Eval Agent
+2026-03-28 16:59:08,763 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-03-28 16:59:16,865 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 16:59:16,872 - INFO - app.tools - Tool call: search_financial_news(query='order fulfillment trends')
+2026-03-28 16:59:16,875 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    DATE_TRUNC('MONTH', order_purchase_timestamp) AS month,
+    AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_time
+FROM
+    OLIST_ORDERS
+WHERE
+    order_delivered_customer_date IS NOT NULL
+GROUP BY
+    1
+ORDER BY
+    1
+')
+2026-03-28 16:59:16,884 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 16:59:16,884 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 16:59:17,377 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,391 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,449 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,461 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,519 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,532 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,596 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,607 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,669 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,671 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-28 16:59:17,686 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,749 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,760 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:17,822 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 16:59:17,878 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:17,890 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,139 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:18,153 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,212 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:18,222 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,296 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 16:59:18,359 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,489 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 16:59:18,502 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,583 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 16:59:18,685 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 17:29:13,657 - ERROR - app.tools - query_snowflake error: 
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\tools.py", line 68, in query_snowflake
+    conn = get_conn()
+           ^^^^^^^^^^
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\scripts\sf_connect.py", line 89, in get_conn
+    passcode = input("Enter your MFA TOTP code (6-digit code from authenticator app): ").strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2026-03-28 17:29:40,550 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 17:29:40,558 - ERROR - __main__ - Baseline Eval Error: cannot schedule new futures after interpreter shutdown
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\streamlit_app.py", line 544, in <module>
+    base_res = baseline_agent.invoke({"messages": [("user", eval_query)]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\main.py", line 3094, in invoke
+    for chunk in self.stream(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\main.py", line 2669, in stream
+    for _ in runner.tick(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\_runner.py", line 167, in tick
+    run_with_retry(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\_retry.py", line 71, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\_internal\_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\_internal\_runnable.py", line 400, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\prebuilt\tool_node.py", line 814, in _func
+    executor.map(self._run_one, tool_calls, input_types, tool_runtimes)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langchain_core\runnables\config.py", line 581, in map
+    return super().map(
+           ^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 608, in map
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 608, in <listcomp>
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langchain_core\runnables\config.py", line 555, in submit
+    return super().submit(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\thread.py", line 169, in submit
+    raise RuntimeError('cannot schedule new futures after '
+RuntimeError: cannot schedule new futures after interpreter shutdown
+During task with name 'tools' and id '3216234b-fe34-5873-c84c-6a3e5b82a3e3'
+2026-03-28 17:31:26,037 - INFO - __main__ - Running Baseline Eval Agent
+2026-03-28 17:31:26,037 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-03-28 17:31:34,596 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 17:31:34,602 - INFO - app.tools - Tool call: search_financial_news(query='retail industry sentiment')
+2026-03-28 17:31:34,606 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+    AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_time,
+    AVG(DATEDIFF('day', order_estimated_delivery_date, order_delivered_customer_date)) AS avg_delivery_gap
+FROM OLIST_ORDERS
+WHERE order_status = 'delivered'
+')
+2026-03-28 17:31:34,623 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 17:31:34,623 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 17:31:35,126 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,127 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-28 17:31:35,145 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,202 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,217 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,273 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,287 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,346 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,358 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,462 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,475 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,555 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,570 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,625 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 17:31:35,682 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,696 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:35,920 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:35,932 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:36,024 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:36,037 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:36,113 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 17:31:36,173 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 17:31:36,300 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:31:36,315 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 17:31:36,390 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 17:31:36,498 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 17:32:13,640 - INFO - __main__ - Running Baseline Eval Agent
+2026-03-28 17:32:13,641 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-03-28 17:32:23,850 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 17:32:23,865 - INFO - app.tools - Tool call: search_financial_news(query='order fulfillment sentiment')
+2026-03-28 17:32:23,874 - INFO - app.tools - Tool call: query_snowflake(sql_query='
+SELECT
+  order_status,
+  COUNT(order_id) AS total_orders,
+  AVG(DATEDIFF('day', order_purchase_timestamp, order_delivered_customer_date)) AS avg_delivery_time,
+  AVG(DATEDIFF('day', order_estimated_delivery_date, order_delivered_customer_date)) AS avg_delivery_delay
+FROM OLIST_ORDERS
+GROUP BY order_status
+ORDER BY total_orders DESC;
+')
+2026-03-28 17:32:23,892 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-03-28 17:32:23,892 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-28 17:32:24,014 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,024 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,150 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,159 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,252 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,261 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,354 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,363 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,465 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,475 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,764 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,777 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:24,866 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-28 17:32:24,940 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:24,950 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:25,267 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:25,280 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:25,342 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:25,352 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:25,420 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-28 17:32:25,476 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-28 17:32:25,714 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-28 17:32:25,724 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-28 17:32:25,786 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-28 17:32:26,043 - INFO - app.tools - Retrieved 3 chunks.
+2026-03-28 17:33:14,509 - ERROR - app.tools - query_snowflake error: 
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\tools.py", line 68, in query_snowflake
+    conn = get_conn()
+           ^^^^^^^^^^
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\scripts\sf_connect.py", line 89, in get_conn
+    passcode = input("Enter your MFA TOTP code (6-digit code from authenticator app): ").strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+EOFError
+2026-03-28 17:33:19,039 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-03-28 17:33:19,045 - ERROR - __main__ - Baseline Eval Error: cannot schedule new futures after interpreter shutdown
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\streamlit_app.py", line 544, in <module>
+    base_res = baseline_agent.invoke({"messages": [("user", eval_query)]})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\main.py", line 3094, in invoke
+    for chunk in self.stream(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\main.py", line 2669, in stream
+    for _ in runner.tick(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\_runner.py", line 167, in tick
+    run_with_retry(
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\pregel\_retry.py", line 71, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\_internal\_runnable.py", line 656, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\_internal\_runnable.py", line 400, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langgraph\prebuilt\tool_node.py", line 814, in _func
+    executor.map(self._run_one, tool_calls, input_types, tool_runtimes)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langchain_core\runnables\config.py", line 581, in map
+    return super().map(
+           ^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 608, in map
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 608, in <listcomp>
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\langchain_core\runnables\config.py", line 555, in submit
+    return super().submit(
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\thread.py", line 169, in submit
+    raise RuntimeError('cannot schedule new futures after '
+RuntimeError: cannot schedule new futures after interpreter shutdown
+During task with name 'tools' and id '7b5ea8c5-903a-1421-f27b-49917cbf8b39'
+2026-03-28 17:37:28,298 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-03-28 17:37:28,301 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-03-28 17:37:32,760 - ERROR - snowflake.connector.token_cache - Failed to delete credential in the keyring: err=[EAGLE:SFEDU02-DCB73175.SNOWFLAKECOMPUTING.COM:MFA_TOKEN]

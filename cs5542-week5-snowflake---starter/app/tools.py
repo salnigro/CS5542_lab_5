@@ -64,8 +64,13 @@ def query_snowflake(sql_query: str) -> str:
             logger.warning("Agent attempted non-SELECT query.")
             return "Error: Only SELECT queries are permitted for safety."
 
-        from app.streamlit_app import get_cached_conn
-        conn = get_cached_conn()
+        import app.tools as tools_module
+        if hasattr(tools_module, '_SHARED_CONN') and tools_module._SHARED_CONN is not None:
+            conn = tools_module._SHARED_CONN
+        else:
+            from scripts.sf_connect import get_conn
+            conn = get_conn()
+        
         df = pd.read_sql(sql_query, conn)
         
         if df.empty:

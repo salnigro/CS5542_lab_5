@@ -34,12 +34,13 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from scripts.sf_connect import get_conn
 from scripts.retrieve import Retriever
 from app.chat_agent import get_agent
+import app.tools
 
 # ──────────────────── Config ────────────────────
 DB = os.getenv("SNOWFLAKE_DATABASE", "INSTRUCTOR2_DB")
 SCHEMA = os.getenv("SNOWFLAKE_SCHEMA", "MY_SCHEMA")
 LOG_PATH = "logs/pipeline_logs.csv"
-TABLES = ["EVENTS", "USERS", "ONLINE_RETAIL", "OLIST_ORDERS"]
+TABLES = ["ONLINE_RETAIL", "OLIST_ORDERS"]
 
 # ──────────────────── Logging Setup ────────────────────
 os.makedirs("logs", exist_ok=True)
@@ -104,6 +105,11 @@ def log_event(team: str, user: str, query_name: str, latency_ms: int, rows: int,
 def get_cached_conn():
     """Return a Snowflake connection cached across Streamlit reruns."""
     return get_conn()
+
+try:
+    app.tools._SHARED_CONN = get_cached_conn()
+except Exception:
+    pass
 
 def run_query(sql: str):
     """Run SQL and return (DataFrame, latency_ms). Auto-reconnects on stale connections."""
@@ -356,8 +362,6 @@ with tab3:
 
     # Column definitions per table
     table_columns = {
-        "EVENTS": ["EVENT_ID", "EVENT_TIME", "TEAM", "CATEGORY", "VALUE"],
-        "USERS":  ["USER_ID", "TEAM", "ROLE", "CREATED_AT"],
         "ONLINE_RETAIL":["Invoice","StockCode","Description","Quantity","InvoiceDate","Price","Customer ID","Country"],
         "OLIST_ORDERS": ["order_id","customer_id","order_status","order_purchase_timestamp","order_approved_at","order_delivered_carrier_date","order_delivered_customer_date","order_estimated_delivery_date"]
     }
