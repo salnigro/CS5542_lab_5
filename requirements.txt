@@ -1,0 +1,16 @@
+snowflake-connector-python[secure-local-storage]
+pandas
+python-dotenv
+streamlit
+altair
+watchdog
+faiss-cpu
+sentence-transformers
+datasets
+pytest
+pyyaml
+tabulate
+langchain-core
+langchain-google-genai
+langgraph
+google-generativeai
