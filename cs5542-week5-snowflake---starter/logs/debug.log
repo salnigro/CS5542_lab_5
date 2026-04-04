@@ -753,3 +753,337 @@ WHERE order_delivered_customer_date IS NOT NULL AND order_estimated_delivery_dat
 2026-03-28 17:43:48,055 - INFO - __main__ - Cache miss for query, querying DB...
 2026-03-28 17:44:09,147 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
 2026-03-28 17:44:09,148 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:11:04,697 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-04-04 15:11:04,698 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:11:32,837 - INFO - __main__ - Cache miss for query, querying DB...
+2026-04-04 15:11:43,000 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-04-04 15:11:43,000 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:11:49,256 - INFO - __main__ - Cache miss for query, querying DB...
+2026-04-04 15:12:07,035 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-04-04 15:12:07,037 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:12:22,925 - INFO - __main__ - Executing query: SELECT CURRENT_WAREHOUSE(), CURRENT_DATABASE(), CURRENT_SCHEMA();...
+2026-04-04 15:12:23,068 - INFO - __main__ - Query completed in 143 ms with 1 rows.
+2026-04-04 15:12:29,046 - INFO - __main__ - Running RAG retrieval for query: what company is doing well 
+2026-04-04 15:12:29,067 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-04-04 15:12:29,068 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-04-04 15:12:29,621 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:29,738 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:29,945 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:29,973 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,068 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,092 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,162 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,186 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,258 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,259 - WARNING - huggingface_hub.utils._http - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-04 15:12:30,294 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,368 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,387 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,494 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-04 15:12:30,579 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,609 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:30,922 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:30,951 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:31,023 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:31,065 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:31,161 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-04 15:12:31,229 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-04 15:12:31,383 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:12:31,399 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-04-04 15:12:31,464 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-04-04 15:12:32,790 - INFO - google_genai.models - AFC is enabled with max remote calls: 10.
+2026-04-04 15:12:41,240 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:12:41,256 - INFO - __main__ - RAG Synthesis complete.
+2026-04-04 15:13:49,819 - INFO - __main__ - Agent invoked with prompt: What were the top 5 customers by revenue in Q4 2024?
+2026-04-04 15:13:49,819 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-04-04 15:13:56,528 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:13:56,536 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT 
+    "Customer ID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "Customer ID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;')
+2026-04-04 15:14:05,411 - ERROR - app.tools - query_snowflake error: Execution failed on sql 'SELECT 
+    "Customer ID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "Customer ID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9d-0108-54b7-001e-4e6b005dc54e: SQL compilation error: error line 2 at position 4
+invalid identifier '"Customer ID"'
+Traceback (most recent call last):
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\cursor.py", line 1144, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 298, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 354, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 229, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 000904 (42000): 01c37d9d-0108-54b7-001e-4e6b005dc54e: SQL compilation error: error line 2 at position 4
+invalid identifier '"Customer ID"'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\tools.py", line 74, in query_snowflake
+    df = pd.read_sql(sql_query, conn)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT 
+    "Customer ID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "Customer ID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9d-0108-54b7-001e-4e6b005dc54e: SQL compilation error: error line 2 at position 4
+invalid identifier '"Customer ID"'
+2026-04-04 15:14:10,732 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:14:10,737 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT 
+    "CustomerID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "CustomerID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;')
+2026-04-04 15:14:11,325 - ERROR - app.tools - query_snowflake error: Execution failed on sql 'SELECT 
+    "CustomerID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "CustomerID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e5116: SQL compilation error: error line 2 at position 4
+invalid identifier '"CustomerID"'
+Traceback (most recent call last):
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\cursor.py", line 1144, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 298, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 354, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 229, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e5116: SQL compilation error: error line 2 at position 4
+invalid identifier '"CustomerID"'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\tools.py", line 74, in query_snowflake
+    df = pd.read_sql(sql_query, conn)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT 
+    "CustomerID", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "CustomerID"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e5116: SQL compilation error: error line 2 at position 4
+invalid identifier '"CustomerID"'
+2026-04-04 15:14:21,848 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:14:21,853 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT 
+    "customer_id", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "customer_id"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;')
+2026-04-04 15:14:22,167 - ERROR - app.tools - query_snowflake error: Execution failed on sql 'SELECT 
+    "customer_id", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "customer_id"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e511a: SQL compilation error: error line 2 at position 4
+invalid identifier '"customer_id"'
+Traceback (most recent call last):
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\cursor.py", line 1144, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 298, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 354, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\snowflake\connector\errors.py", line 229, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e511a: SQL compilation error: error line 2 at position 4
+invalid identifier '"customer_id"'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\salni\Documents\cs5542\CS5542_lab_5\cs5542-week5-snowflake---starter\app\tools.py", line 74, in query_snowflake
+    df = pd.read_sql(sql_query, conn)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\salni\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT 
+    "customer_id", 
+    SUM(Quantity * Price) AS "Total Revenue"
+FROM 
+    ONLINE_RETAIL
+WHERE 
+    InvoiceDate >= '2024-10-01' AND InvoiceDate < '2025-01-01'
+GROUP BY 
+    "customer_id"
+ORDER BY 
+    "Total Revenue" DESC
+LIMIT 5;': 000904 (42000): 01c37d9e-0108-5680-001e-4e6b005e511a: SQL compilation error: error line 2 at position 4
+invalid identifier '"customer_id"'
+2026-04-04 15:14:28,578 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:14:28,581 - INFO - __main__ - Agent execution successful.
+2026-04-04 15:16:03,273 - INFO - __main__ - Cache miss for query, querying DB...
+2026-04-04 15:16:22,099 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-04-04 15:16:22,099 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:16:26,286 - INFO - __main__ - Cache miss for query, querying DB...
+2026-04-04 15:16:35,023 - INFO - snowflake.connector.connection - Snowflake Connector for Python Version: 4.3.0, Python Version: 3.11.7, Platform: Windows-10-10.0.26200-SP0
+2026-04-04 15:16:35,023 - INFO - snowflake.connector.connection - Connecting to GLOBAL Snowflake domain
+2026-04-04 15:17:33,282 - INFO - __main__ - Agent invoked with prompt: What is the total sales revenue (Quantity multiplied by Price) generated per country in the ONLINE_RETAIL database? Please give me the top 5 countries.
+2026-04-04 15:17:33,283 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-04-04 15:17:38,485 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:17:38,491 - INFO - app.tools - Tool call: query_snowflake(sql_query='SELECT
+  Country,
+  SUM(Quantity * Price) AS TotalRevenue
+FROM ONLINE_RETAIL
+GROUP BY
+  Country
+ORDER BY
+  TotalRevenue DESC
+LIMIT 5;')
+2026-04-04 15:18:05,396 - INFO - app.tools - Query successful, returned 5 rows.
+2026-04-04 15:18:07,163 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:18:07,166 - INFO - __main__ - Agent execution successful.
+2026-04-04 15:19:52,415 - INFO - __main__ - Running Baseline Eval Agent
+2026-04-04 15:19:52,415 - INFO - app.chat_agent - Initializing agent with adapted=False
+2026-04-04 15:19:59,241 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,248 - INFO - app.tools - Tool call: search_financial_news(query='product recall risk')
+2026-04-04 15:19:59,261 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-04-04 15:19:59,262 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-04-04 15:19:59,405 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,426 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,504 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,529 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,593 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,607 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,671 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,683 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,745 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,754 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,830 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:19:59,861 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:19:59,930 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-04 15:20:00,003 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:00,016 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,162 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:00,175 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,253 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:00,273 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,343 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-04 15:20:00,437 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,555 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:00,577 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,646 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-04-04 15:20:00,744 - INFO - app.tools - Retrieved 3 chunks.
+2026-04-04 15:20:03,745 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:20:03,751 - INFO - app.tools - Tool call: search_financial_news(query='product recall risk mitigation')
+2026-04-04 15:20:03,762 - INFO - sentence_transformers.SentenceTransformer - Use pytorch device_name: cpu
+2026-04-04 15:20:03,764 - INFO - sentence_transformers.SentenceTransformer - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-04-04 15:20:03,820 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:03,832 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:03,891 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:03,905 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,001 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,019 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,081 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,105 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,185 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,202 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,262 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,271 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,342 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-04 15:20:04,404 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,418 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,580 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,627 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,704 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:04,722 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:04,781 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-04 15:20:04,844 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-04 15:20:05,108 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-04 15:20:05,124 - INFO - httpx - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-04-04 15:20:05,186 - INFO - httpx - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-04-04 15:20:05,290 - INFO - app.tools - Retrieved 3 chunks.
+2026-04-04 15:20:15,145 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
+2026-04-04 15:20:15,150 - INFO - __main__ - Running Adapted Eval Agent
+2026-04-04 15:20:15,150 - INFO - app.chat_agent - Initializing agent with adapted=True
+2026-04-04 15:20:20,856 - INFO - httpx - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent "HTTP/1.1 200 OK"
